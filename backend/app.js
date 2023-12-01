@@ -37,7 +37,7 @@ app.use((err, req, res, next) => {
 
 
 import os from 'os'
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8081;
 
 // Response time logging middleware
 function responseTimeLogger(req, res, next){
