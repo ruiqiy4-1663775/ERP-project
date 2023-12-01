@@ -30,8 +30,8 @@ jobs:
     
       - name: Copy Frontend Build to Backend
         run: |
-            rm -rf backend/dist
-            cp -R frontend/dist backend/
+            rm -rf backend/build
+            cp -R frontend/build backend/
 
       - name: npm install, build, and test for backend
         run: |
