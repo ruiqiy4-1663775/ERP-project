@@ -70,5 +70,5 @@ jobs:
         with:
           app-name: 'erp-uniytech'
           slot-name: 'Production'
-          package: .
+          package: backend
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_43523E51DB574837ABEAD50D158188FB }}
