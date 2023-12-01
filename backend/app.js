@@ -51,7 +51,6 @@ function responseTimeLogger(req, res, next){
   next();
 }
 
-
 // Listen to the App Engine-specified port, or 8080 otherwise
 app.listen(PORT, () => {
   const networkInterfaces = os.networkInterfaces();
