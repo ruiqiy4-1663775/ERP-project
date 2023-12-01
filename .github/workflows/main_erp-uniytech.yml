@@ -21,14 +21,26 @@ jobs:
         with:
           node-version: '18.x'
 
-      - name: npm install, build, and test
+      - name: npm install, build, and test for fronend
         run: |
-          npm install
-          npm run build --if-present
-          npm run test --if-present
+            cd frontend
+            npm install
+            npm run build --if-present
+            npm run test --if-present
+    
+      - name: Copy Frontend Build to Backend
+        run: |
+            rm -rf backend/dist
+            cp -R frontend/dist backend/
+
+      - name: npm install, build, and test for backend
+        run: |
+                cd backend
+                npm install
+                npm run build --if-present
 
       - name: Zip artifact for deployment
-        run: zip release.zip ./* -r
+        run: zip release.zip ./backend -r
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3

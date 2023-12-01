@@ -1,6 +1,6 @@
 // export const API_ENDPOINT = "http://localhost:8080";
-// export const API_ENDPOINT = ""
-export const API_ENDPOINT = "http://192.168.1.82:8080"
+export const API_ENDPOINT = ""
+// export const API_ENDPOINT = "http://192.168.1.82:8080"
 export const LOCAL_STORAGE_KEY = "ERP";
 export const ADMIN_CONTROL = ['admin'];
 export const TIMEOUT = 2000; // For axios request
