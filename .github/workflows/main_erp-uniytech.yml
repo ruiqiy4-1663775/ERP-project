@@ -71,4 +71,4 @@ jobs:
           app-name: 'erp-uniytech'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_6282A9B30567421C979A094D786FF93F }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_43523E51DB574837ABEAD50D158188FB }}
