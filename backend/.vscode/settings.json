@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/6e95e95c-cd44-49dd-b2ff-ca14e3891f3c/resourceGroups/DefaultResourceGroup-CUS/providers/Microsoft.Web/sites/erptemplate",
+    "appService.deploySubpath": "."
+}
