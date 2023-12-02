@@ -17,7 +17,6 @@ export const customStyles = {
         '&:hover': {
             borderColor: '#D1D5DB' // border-gray-300 on hover
         },
-
     }),
     singleValue: (provided, state) => ({
         ...provided,
