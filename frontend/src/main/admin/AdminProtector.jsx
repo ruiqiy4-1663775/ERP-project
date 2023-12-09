@@ -1,16 +1,22 @@
 
 import { LOCAL_STORAGE_KEY, ADMIN_CONTROL } from '../../utils/constants';
 import Admin from './Admin';
-import NoAccess from '../../components/Modal';
-import { useNavigate } from "react-router-dom";
-
+import { ModalContext } from '../../utils/ModalContext';
+import { useContext, useEffect } from 'react';
 function AdminProtector() {
-    let navigate = useNavigate();
+    const { openModal } = useContext(ModalContext)
     let loginInfo = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+    useEffect(() => {
+        if (!loginInfo || !ADMIN_CONTROL.includes(loginInfo.role)) {
+            openModal(new Error('You have no access to this page'))
+        }
+    // eslint-disable-next-line
+    }, [])
+    if (!loginInfo || !ADMIN_CONTROL.includes(loginInfo.role)) {
+        return null
+    }
     return (
-        loginInfo && ADMIN_CONTROL.includes(loginInfo.role)
-            ?<Admin></Admin>
-            :<NoAccess close={() => navigate(-1)}>you have no access to this page</NoAccess> 
+        <Admin></Admin>
     );
 }
 
