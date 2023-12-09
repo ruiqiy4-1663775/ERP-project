@@ -31,13 +31,13 @@ test('findSupplierByName test', async ()=> {
         'Supplier Name': 'Test Supplier',
     };
     const result = await supplier.findSupplierByName(supplierData)
-    console.log(result)
+    // console.log(result)
 });
 
 
 test('findSupplierById test', async ()=> {
     const result = await supplier.findSupplierById(1);
-    console.log(result)
+    // console.log(result)
 });
 
 
@@ -47,7 +47,7 @@ test('findSupplierByName test', async ()=> {
         'Supplier Name': 'Test Supplier',
     };
     const result = await supplier.findSupplierById(supplierData);
-    console.log(result)
+    // console.log(result)
 });
 
 test('updateSupplier test', async ()=> {
@@ -63,9 +63,9 @@ test('updateSupplier test', async ()=> {
     }
     const idToFind = 1
     const result = await supplier.updateSupplier(idToFind,newValues);
-    console.log(result)
+    // console.log(result)
     const result2 = await supplier.findSupplierById(idToFind);
-    console.log(result2)
+    // console.log(result2)
 });
 
 
@@ -87,11 +87,11 @@ test('deleteSupplier test', async ()=> {
 
     const result = await supplier.addSupplier(supplierData);
     const idToDelete = result.insertId;
-    console.log(idToDelete)
+    // console.log(idToDelete)
 
-    console.log(await supplier.findSupplierById(idToDelete));
+    // console.log(await supplier.findSupplierById(idToDelete));
     await supplier.deleteSupplier(idToDelete);
-    console.log(await supplier.findSupplierById(idToDelete));
+    // console.log(await supplier.findSupplierById(idToDelete));
     }
 );
 

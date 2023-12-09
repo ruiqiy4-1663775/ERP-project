@@ -1,3 +1,4 @@
+// these are all protected routes. Need login for access
 import express from 'express';
 const router = express.Router();
 import { updateTable } from './data_access_layer/data_access.js';

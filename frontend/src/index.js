@@ -9,7 +9,7 @@ root.render(
     <React.StrictMode>
         <ModalProvider>
             <Routes />
-            </ModalProvider>
+        </ModalProvider>
     </React.StrictMode>
 );
 
