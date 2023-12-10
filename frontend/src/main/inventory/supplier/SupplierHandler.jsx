@@ -18,7 +18,7 @@ function Supplier() {
                 
             </Container>
             {openCreate &&
-                <div onClick={() => setOpenCreate(false)} className="fixed pt-10 inset-0 z-20 bg-black/40 flex flex-col">
+                <div onClick={() => setOpenCreate(false)} className="fixed pt-10 inset-0 z-20 bg-black/40 flex flex-col overflow-auto">
                     <div onClick={(e) => { e.stopPropagation() }} className="w-[85%] mx-auto">
                         <Container width={"bg-white"}>
                             <AddSupplier close={() => setOpenCreate(false)}/>

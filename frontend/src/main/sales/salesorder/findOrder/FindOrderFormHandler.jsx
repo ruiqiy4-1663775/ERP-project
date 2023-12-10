@@ -1,6 +1,5 @@
 // This file is the handler of the findOrder
 import { useState } from 'react';
-import Container from '../../../../components/Container';
 function FindOrderForm({ get }) {
     let fields = ['Order Number', 'Customer ID', 'Customer Name', 'Phone Number', 'Email Address',
         'Employee ID']
@@ -53,7 +52,7 @@ function FindOrderForm({ get }) {
         get('/api/find_order', filteredData);
     }
     return (
-        <Container width={"w-[95%] mb-10"}>
+        
             <div className="space-y-4 w-full">
             <div className="flex justify-between">
                 <h1 className="text-xl font-semibold">Find Order</h1>
@@ -115,7 +114,6 @@ function FindOrderForm({ get }) {
                     </div>
                 </div>
             </div>
-        </Container>
 
     );
 }

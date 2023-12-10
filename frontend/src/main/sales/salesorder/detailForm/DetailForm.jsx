@@ -18,7 +18,7 @@ function OrderDetailForm({ close }) {
         setTrigger({})
     }
     return (
-        <div className="absolute inset-0 bg-slate-100 pt-8">
+        <div className="absolute inset-0 bg-slate-100 py-8 overflow-auto">
         <Container width={"w-[95%]"}>
             <div className="flex justify-between">
                 <h1 className="font-semibold text-xl">Sales Order: {orderId}</h1>

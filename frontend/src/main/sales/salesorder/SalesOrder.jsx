@@ -14,9 +14,8 @@ function SalesOrder() {
     let { orderId } = useParams()
     let navigate = useNavigate()
     const { data, get } = useAxios()
-
     return (
-        <div className="h-full">
+        <div className="relative">
             <Container width={"w-[95%] mb-10"}>
                 <FormHeader>Orders</FormHeader>
                 <div className="border border-gray-400 my-2" />
@@ -28,7 +27,6 @@ function SalesOrder() {
             {orderId &&
                 <DetailForm orderId={orderId} close={() => navigate('/sales/sales_order')} />
             }
-
             {openCreate &&
                 <div onClick={() => setOpenCreate(false)} className="fixed pt-10 inset-0 z-20 bg-black/40 flex flex-col">
                     <div onClick={(e) => { e.stopPropagation() }} className="w-[85%] mx-auto">
@@ -38,15 +36,13 @@ function SalesOrder() {
                     </div>
                 </div>
             }
-            <FindOrderForm get={get}></FindOrderForm>
+            <Container width={"w-[95%] mb-10"}>
+                <FindOrderForm get={get}></FindOrderForm>
+            </Container>
             <Container width={"w-[95%]"}>
-                {/* {data && (data.length !== 0 ? */}
                 <ResultTable data={data} get={get} />
-                {/* : <p className='text-rose-500 text-center'>No result</p> */}
-                {/* )} */}
             </Container>
         </div>
     )
 }
-
 export default SalesOrder;
