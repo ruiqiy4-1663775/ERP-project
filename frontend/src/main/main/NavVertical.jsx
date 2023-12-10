@@ -1,13 +1,10 @@
 import { useNavigate, NavLink } from 'react-router-dom';
-import Link from '../../components/Link';
 import { useState } from 'react';
 import { LOCAL_STORAGE_KEY } from '../../utils/constants';
 import { API_ENDPOINT } from '../../utils/constants'
 
 function Nav({ user }) {
     const [open, setOpen] = useState(true)
-    const [isOpen, setIsOpen] = useState(true);
-    const toggleDropdown = () => setIsOpen(!isOpen);
     return (
         <div className='relative h-full z-10'>
             <svg onClick={() => setOpen(!open)} xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -21,9 +18,8 @@ function Nav({ user }) {
                     <NavLink to={'/'} className="flex items-center pl-2 mr-6 block ">
                         <span className="font-semibold text-xl italic select-none whitespace-nowrap ">My Company</span>
                     </NavLink>
-
                     <div className="flex flex-col flex-grow items-center justify-between overflow-y-auto pb-5">
-                        <div className="text-lg w-full h-full flex flex-col space-y-2 mb-5">
+                        <div className="text-lg w-full flex flex-col space-y-2 mb-5">
                             <div className='border-t'></div>
                             <LinkDropdown arr={[
                                 {
@@ -154,59 +150,8 @@ function Nav({ user }) {
                                 Admin
                             </LinkDropdown>
                         </div>
-
                         <Dropdown username={user}></Dropdown>
-
                     </div>
-
-                    <nav className="hidden w-full items-center text-slate-300 px-3 py-1 drop-shadow-2xl">
-                        <div className="flex items-center justify-between ">
-                            <div className='flex'>
-                                <svg onClick={toggleDropdown} xmlns="http://www.w3.org/2000/svg" fill="none"
-                                    viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 mr-2">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                                </svg>
-                                <span className="font-semibold text-xl text-white italic">My Company</span>
-                            </div>
-                            <Dropdown username={user}></Dropdown>
-                        </div>
-                        {isOpen &&
-                            <div className="w-full ">
-                                <div onClick={() => setIsOpen(false)} className="text-lg">
-                                    <Link className='block mb-1 rounded-full' to={'/'}>Home</Link>
-                                    <Link className='block mb-1 rounded-full' to={'sales'}>Sales</Link>
-                                    <Link className='block mb-1 rounded-full' to={'inventory'}>Inventory</Link>
-                                    <Link className='block mb-1 rounded-full' to={'human_resource'}>Human Resource</Link>
-                                    <Link className='block mb-1 rounded-full' to={'finance'}>Finance</Link>
-                                    <Link className='block mb-1 rounded-full' to={'admin'}>Admin</Link>
-                                    {/* <LinkDropdown arr={[
-                                { 'Sales Order': 'sales/sales_order' },
-                                { 'Customer Data': 'sales/customer' },
-                                { 'Price Management': 'sales/price_management' },
-                            ]}>
-                                Sales
-                            </LinkDropdown>
-                            <LinkDropdown arr={[
-                                { 'Products List': 'inventory/items' }
-                            ]}>
-                                Inventory
-                            </LinkDropdown>
-                            <LinkDropdown arr={[
-                                { 'Employees': 'human_resource' },
-                            ]}>
-                                Human Resource
-                            </LinkDropdown>
-                            <LinkDropdown arr={[
-                                { 'Users': 'admin/users' },
-                                {'Audition': 'admin/audition'},
-                                {'Requests': 'admin/requests'}
-                            ]}>
-                                Admin
-                            </LinkDropdown> */}
-                                </div>
-                            </div>
-                        }
-                    </nav>
                 </div>
             }
         </div>
@@ -221,12 +166,19 @@ const LinkDropdown = ({ arr, children }) => {
             <div onClick={toggleDropdown} className={`w-full text-lg py-0.5 px-3 rounded select-none
                 whitespace-nowrap hover:bg-violet-400`} >
                 <span className='subpixel-antialiased'>{children}</span>
-
             </div>
             {isOpen && (
-                <div className='flex flex-col w-max min-w-full space-y-3'> {arr.map((row, index) => <Link dest={row.dest} key={index} >
-                    <span className="pl-5 mr-1 select-none">{row.icon}</span>{row.label}
-                </Link>)} </div>
+                <div className='flex flex-col w-max min-w-full'> {arr.map((row, index) =>
+                    <NavLink
+                        key={index}
+                        to={row.dest}
+                        className={({ isActive }) => `py-2 pl-2 pr-9 tracking-tight text-white select-none text-lg flex 
+                        subpixel-antialiased ${isActive ? "bg-violet-400" : "hover:bg-violet-300"} rounded-3xl`}
+                    >
+                        <span className="pl-5 mr-1 select-none">{row.icon}</span>{row.label}
+                    </NavLink>
+                )}
+                </div>
             )}
         </div>
     );
