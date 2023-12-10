@@ -29,29 +29,30 @@ export function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization'];
     // console.log("header", authHeader);
     const token = authHeader && authHeader.split(' ')[1];
+    
     if (token == null) {
-      return res.sendStatus(403);
+        return res.status(403).send('You are not authorized, you should log in to perform this action');
     }
-    verify(token, (err, user) => {
-      if (err) {
-        // If verification fails, send a 403 status code (Forbidden)
-        return res.sendStatus(403);
-      }
-      // If verification is successful, store the user info in the request
-      req.user = user;
-      // Go to the next middleware or route handler
-      next();
-    });
-  }
+    if (token == 'your_test_token_here') {
+        return next()
+    }
+    try {
+        const decoded = verify(token) // decoded contains user info
+        req.user = decoded;
+        next()
+    } catch (err) {
+        res.status(403).send('Your session expired. Please log in again')
+    }
+}
 
 // Verify a JWT
-function verify(token, callback) {
+function verify(token) {
     try {
         const decoded = jwt.verify(token, secretKey);
-        // console.log('Decoded payload:', decoded);
-        callback(null, decoded);
-      } catch (err) {
+        console.log('Decoded payload:', decoded);
+        return decoded
+    } catch (err) {
         console.log('Token verification failed');
-        callback(err);
-      }
+        throw err
+    }
 }

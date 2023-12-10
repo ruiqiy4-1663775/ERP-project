@@ -56,6 +56,7 @@ router.post('/new_supplier', async (req, res, next) => {
     }
 })
 
+// has either Supplier Name or Supplier ID
 router.get('/find_supplier', async (req, res, next) => {
     try {
         let result = await supplier.findSupplier(req.query)

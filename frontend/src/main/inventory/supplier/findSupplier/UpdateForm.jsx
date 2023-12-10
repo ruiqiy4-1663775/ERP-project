@@ -16,7 +16,7 @@ function UpdateForm({content, clearSelected, updateTable}) {
     }
 
     async function handleDelete() {
-        await axios.updateData('/api/delete_supplier', {supplierId: content['Supplier ID']}, 
+        await axios.updateData('/api/delete_supplier', {supplierId: content['id']}, 
             'sucessfully deleted supplier');
         updateTable()
         clearSelected()

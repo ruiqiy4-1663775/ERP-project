@@ -1,7 +1,7 @@
 import { connection } from '../data_access_layer/dbconfig.js'
-import mysql from 'mysql2'
 import { addWhereClause, addSetClause } from '../service/utils.js'
 import mysqlv2 from "mysql2/promise";
+import { Supplier } from '../data_access_layer/models.js'
 
 // *Vendor Name       *Contact
 // *Address           *Phone
@@ -72,33 +72,22 @@ async function addSupplier(info) {
     return result
 }
 
-async function findSupplier(filter) {
-    const Map = { 'Supplier ID': 'supplier_id', 'Supplier Name': 'supplier_name' }
-    let sql = `
-        SELECT supplier_id as "Supplier ID", supplier_name as "Supplier Name", contact_info as
-        "Contact Info", supplier_type as "Supplier Type" FROM Suppliers `
-    sql = addWhereClause(sql, filter, Map)
-    let [result] = await connection.execute(sql)
-    return result
+export async function findSupplier(filter) {
+    console.log(filter)
+    let records = []
+    if (filter['Supplier ID']) {
+        records = await Supplier.findAll({where:{id: filter['Supplier ID']}})
+    } else if (filter['Supplier Name']) {
+        records = await Supplier.findAll({
+            where: {
+                supplier_name: filter['Supplier Name'],
+            }
+        })
+    } else {
+        records = await Supplier.findAll()
+    }
+    return records
 }
-
-async function findSupplierByName(filter) {
-    const Map = { 'Supplier Name': 'supplier_name' }
-    let sql = `
-        SELECT * FROM Suppliers`
-    sql = addWhereClause(sql, filter, Map)
-    let [result] = await connection.execute(sql)
-    return result
-}
-
-
-async function findSupplierById(supplierId) {
-    let sql = `
-        SELECT * FROM Suppliers where supplier_id = '${supplierId}'`
-    let [result] = await connection.execute(sql)
-    return result
-}
-
 
 async function updateSupplier(supplierId, newValues) {
     const Map = {
@@ -128,10 +117,12 @@ async function updateSupplier(supplierId, newValues) {
 }
 
 async function deleteSupplier(supplierId) {
-    let sql = `
-        DELETE FROM Suppliers WHERE supplier_id = '${supplierId}'`
-    const result = await connection.execute(sql)
-    return result
+    let supplier = await Supplier.findByPk(supplierId)
+    if(supplier) {
+        let response = await supplier.destroy()
+        return response
+    }
+
 }
 
 export default {
@@ -139,6 +130,4 @@ export default {
     findSupplier,
     updateSupplier,
     deleteSupplier,
-    findSupplierByName,
-    findSupplierById,
 }

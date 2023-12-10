@@ -9,14 +9,14 @@ function Nav({ user }) {
     const [isOpen, setIsOpen] = useState(true);
     const toggleDropdown = () => setIsOpen(!isOpen);
     return (
-        <div className='relative  h-full z-10'>
+        <div className='relative h-full z-10'>
             <svg onClick={() => setOpen(!open)} xmlns="http://www.w3.org/2000/svg" fill="none"
                 viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8
                 text-purp/60 hover:text-purp hover:w-9 hover:h-9 absolute left-full">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
             </svg>
             {open &&
-                <div className='h-full w-44 flex flex-col space-y-3 bg-gradient-to-r 
+                <div className='h-full w-52 flex flex-col space-y-3 bg-gradient-to-r 
         from-[#403a84f8] to-slate-100 pt-5 text-white'>
                     <NavLink to={'/'} className="flex items-center pl-2 mr-6 block ">
                         <span className="font-semibold text-xl italic select-none whitespace-nowrap ">My Company</span>

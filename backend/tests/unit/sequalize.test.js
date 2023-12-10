@@ -1,3 +1,5 @@
+import '../../app.js'
+// import 'dotenv/config';
 import sequelize from '../../src/data_access_layer/sequelize.js'
 
 describe('Database Connection', () => {

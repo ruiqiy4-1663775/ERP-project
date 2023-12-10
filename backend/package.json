@@ -6,8 +6,9 @@
   "main": "app.js",
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "start": "node app.js",
-    "dev": "nodemon app.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "sync": "node ./src/data_access_layer/sync.js"
   },
   "author": "",
   "license": "ISC",

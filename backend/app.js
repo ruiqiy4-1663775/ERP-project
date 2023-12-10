@@ -1,13 +1,13 @@
 import express from 'express';
 export const app = express();
+import 'dotenv/config';
 import indexRouter from './src/index.js';
 import {login} from './src/authentication/auth.js'
 import cors from 'cors'
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import dotenv from 'dotenv';
-// load env variables
-dotenv.config();
+
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -38,10 +38,6 @@ app.use((err, req, res, next) => {
     res.status(500).send(err)
 })
 
-
-import os from 'os'
-const PORT = process.env.PORT || 8080;
-
 // Response time logging middleware
 function responseTimeLogger(req, res, next){
   const startTime = Date.now();
@@ -54,17 +50,4 @@ function responseTimeLogger(req, res, next){
   next();
 }
 
-// Listen to the App Engine-specified port, or 8080 otherwise
-app.listen(PORT, () => {
-  const networkInterfaces = os.networkInterfaces();
-
-  for (let name of Object.keys(networkInterfaces)) {
-    for (let net of networkInterfaces[name]) {
-      // Skip over non-IPv4 and internal (i.e. 127.0.0.1) addresses
-      if (net.family === 'IPv4' && !net.internal) {
-        console.log(`Server IP Address on network: http://${net.address}:${PORT}`);
-      }
-    }
-  }
-});
 
