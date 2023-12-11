@@ -51,7 +51,7 @@ Supplier.init({
       type: DataTypes.STRING,
       allowNull: true
     },
-    NOTE: {
+    note: {
       type: DataTypes.TEXT,
       allowNull: true
     }

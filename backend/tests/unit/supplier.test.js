@@ -13,6 +13,14 @@ describe('GET /supplier', () => {
         console.log(body)
         expect(response.status).toBe(200);
     });
+    it('get all suppliers', async () => {
+        const response = await request(app)
+            .get(`/api/find_supplier`)
+            .set('Authorization', `Bearer ${testToken}`);
+        const body = response.body
+        console.log(body)
+        expect(response.status).toBe(200);
+    });
 
     it('should delete the supplier and return status 200', async () => {
         // Mock the supplierId to delete

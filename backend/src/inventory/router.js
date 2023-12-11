@@ -1,7 +1,7 @@
 import express from 'express'
 const router = express.Router();
 import { connection } from '../data_access_layer/dbconfig.js'
-import supplier from './supplier.js'
+import * as supplier from './supplier.js'
 import purchase from './purchase.js'
 import stock from './stock.js';
 import location from './location.js';

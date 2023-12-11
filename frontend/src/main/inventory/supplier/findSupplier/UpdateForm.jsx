@@ -5,6 +5,23 @@ import { ModalContext } from '../../../../utils/ModalContext';
 import Container from '../../../../components/Container';
 
 function UpdateForm({ content, clearSelected, updateTable }) {
+    const keyMap = {
+        "Address line 1": "supplier_address_line1",
+        "Address line 2": "supplier_address_line2",
+        "City": "supplier_city",
+        "Contact Name": "contact_name",
+        "Contact Phone": "contact_phone",
+        "Contact Primary Email": "contact_primary_email",
+        "Contact Secondary Email": "contact_secondary_email",
+        "Contact Title": "contact_title",
+        "Country": "supplier_country",
+        'Note': 'note',
+        "State": "supplier_state",
+        "Supplier Name": "supplier_name",
+        "Zip": "supplier_zipcode"
+    };
+    console.log(content)
+
     const [currentState, setCurrentState] = useState(content);
     const axios = useAxios();
     const { openModal } = useContext(ModalContext)
@@ -13,6 +30,15 @@ function UpdateForm({ content, clearSelected, updateTable }) {
             ...currentState,
             [e.target.name]: e.target.value,
         });
+    }
+
+    function findKeyByValue(obj, targetValue) {
+        for (const [key, value] of Object.entries(obj)) {
+            if (value === targetValue) {
+                return key;
+            }
+        }
+        return targetValue; // or undefined, or any other handling as required
     }
 
     async function handleDelete() {
@@ -33,7 +59,7 @@ function UpdateForm({ content, clearSelected, updateTable }) {
         if (Object.keys(changedFields).length > 0) {
             // console.log(changedFields)
             await axios.updateData(`/api/update_supplier`, {
-                supplierId: content['Supplier ID'],
+                supplierId: content['id'],
                 newValues: changedFields
             }, 'Update is successful!')
             updateTable()
@@ -55,7 +81,7 @@ function UpdateForm({ content, clearSelected, updateTable }) {
                     <div className=" grid grid-cols-1 md:grid-cols-2 container md:gap-x-10 md:gap-y-2">
                         {Object.keys(currentState).map((key, index) =>
                             <div className="flex flex-col" key={index}>
-                                <label className="font-medium"> {key} </label>
+                                <label className="font-medium"> {findKeyByValue(keyMap, key)} </label>
                                 <input
                                     type='text'
                                     name={key}
