@@ -1,11 +1,11 @@
 import { useForm, Form } from "./Form"
-import useAxios from "../../../../utils/useAxios"
+import useAxios from "../../../utils/useAxios"
 import Table from "./Table"
 import { useState } from "react"
 import UpdateForm from "./ItemDetail"
 
 function SearchItemForm() {
-    let fields = ['Item ID', 'Item Name', 'Collection', 'Item Type']
+    let fields = ['Item ID', 'Item Name', 'Collection']
     let formLogic = useForm(fields)
     let axios = useAxios()
     const [selectedRow, setSelectedRow] = useState(null);

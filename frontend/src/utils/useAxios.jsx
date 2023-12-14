@@ -84,7 +84,6 @@ function useAxios() {
             }
             console.log(API_ENDPOINT + url)
             await axios.post(API_ENDPOINT + url, data, config);
-
             if (successMessage) {
                 openModalRef.current(null, successMessage);
             }
@@ -93,7 +92,7 @@ function useAxios() {
         }
     }
 
-    return { data, setData, getData, updateData, get, post};
+    return { data, setData, getData, updateData, get, post };
 }
 
 export default useAxios;

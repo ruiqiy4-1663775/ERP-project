@@ -1,9 +1,9 @@
 import { format } from 'date-fns-tz';
 import { useState, useContext } from "react";
-import useAxios from "../../../../utils/useAxios";
-import { ModalContext } from '../../../../utils/ModalContext';
-import { FormLabel } from '../../../../components/Components';
-import Container from '../../../../components/Container';
+import useAxios from "../../../utils/useAxios";
+import { ModalContext } from '../../../utils/ModalContext';
+import { FormLabel } from '../../../components/Components';
+import Container from '../../../components/Container';
 
 function UpdateForm({ content, clearSelected, updateTable }) {
     const [currentState, setCurrentState] = useState(content);
@@ -14,13 +14,6 @@ function UpdateForm({ content, clearSelected, updateTable }) {
             ...currentState,
             [e.target.name]: e.target.value,
         });
-    }
-
-    async function handleDelete() {
-        await axios.updateData('/api/delete_item', { itemId: content['Item ID'] },
-            'sucessfully deleted Item');
-        updateTable()
-        clearSelected()
     }
 
     async function handleUpdate() {
@@ -71,9 +64,6 @@ function UpdateForm({ content, clearSelected, updateTable }) {
                     </div>
                     <button onClick={handleUpdate} className="bg-blue-500 hover:bg-blue-700 text-white py-0.5 px-3 mr-2 rounded">
                         Update
-                    </button>
-                    <button onClick={handleDelete} className="bg-red-500 hover:bg-red-700 text-white py-0.5 px-3 rounded">
-                        Delete
                     </button>
                 </div>
             </Container>

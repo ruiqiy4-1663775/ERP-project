@@ -8,31 +8,20 @@ import location from './location.js';
 import * as items from './items.js'
 
 router.post('/add_item', async (req, res, next) => {
-    let parameters = req.body;
-    let sql =
-        "INSERT INTO Items(item_id, item_name, item_description, collection, item_type, unit) " +
-        "VALUES (?, ?, ?, ?, ?, ?)";
     try {
-        await connection.execute(sql, [parameters['Item ID'], parameters['Item Name'],
-        parameters['Item Description'], parameters['Collection'], parameters['Item Type'],
-        parameters['Unit']])
+        let {item_name, item_description, collection} = req.body;
+        console.log('add_item received payload:', req.body)
+        await items.createItem(item_name, item_description, collection)
         res.sendStatus(200)
     } catch (err) {
         next(err)
     }
 })
+
 router.get('/find_item', async (req, res, next) => {
     try {
         let result = await items.findItem(req.query)
         res.send(result)
-    } catch (err) {
-        next(err)
-    }
-})
-router.post('/delete_item', async (req, res, next) => {
-    try {
-        await connection.execute(`DELETE FROM Items WHERE item_id = '${req.body.itemId}'`)
-        res.sendStatus(200)
     } catch (err) {
         next(err)
     }

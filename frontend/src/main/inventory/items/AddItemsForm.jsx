@@ -1,14 +1,24 @@
-import { FormHeader, FormLabel, InputGrid } from '../../../../components/Components';
-import useAxios from '../../../../utils/useAxios';
-import useForm from '../../../../utils/useForm';
+import { FormHeader, FormLabel, InputGrid } from '../../../components/Components';
+import useAxios from '../../../utils/useAxios';
+import useForm from '../../../utils/useForm';
 function AddItemsForm() {
-    let fields = ['Item ID', 'Item Name', 'Item Description', 'Collection', 'Item Type', 'Unit']
+    let fields = ['Item Name', 'Item Description', 'Collection']
     const formHandler = useForm(fields)
     const { post } = useAxios();
 
     const handleSubmit = () => {
         if (formHandler.validateForm()) {
-            post('/api/add_item', formHandler.formState, "Successfully Added Item");
+            const map = {
+                'Item Name': 'item_name',
+                'Item Description': 'item_description',
+                'Collection': 'collection'
+            }
+            let data = {}
+            for (let field in formHandler.formState) {
+                data[map[field]] = formHandler.formState[field]
+            }
+            console.log(data)
+            post('/api/add_item', data, "Successfully Added Item");
         }
     }
 

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { InputGrid } from "../../../../components/Components";
+import { InputGrid } from "../../../components/Components";
 
 export function useForm(fields) {
     const [formState, setFormState] = useState(initial());

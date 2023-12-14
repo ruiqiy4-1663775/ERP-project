@@ -1,7 +1,7 @@
 // This is the handler of the products
 import Container from "../../../components/Container";
-import SearchItemForm from "./searchItems/SearchItemsForm";
-import AddItemsForm from "./additems/AddItemsForm";
+import SearchItemForm from "./SearchItemsForm";
+import AddItemsForm from "./AddItemsForm";
 import { FormHeader } from "../../../components/Components";
 import { useState } from "react";
 
