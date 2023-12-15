@@ -6,6 +6,19 @@ import { FormLabel } from '../../../components/Components';
 import Container from '../../../components/Container';
 
 function UpdateForm({ content, clearSelected, updateTable }) {
+    const map = {
+        'Item ID': 'id',
+        'Item Name': 'item_name',
+        'Item Description': 'item_description',
+        'Collection': 'collection',
+        'Custom Propertiy 1': 'property1',
+        'Custom Propertiy 2': 'property2',
+        'Custom Propertiy 3': 'property3',
+        'Custom Propertiy 4': 'property4',
+        'Custom Propertiy 5': 'property5',
+        'Created at': 'createdAt',
+        'Updated at': 'updatedAt'
+    }
     const [currentState, setCurrentState] = useState(content);
     const axios = useAxios();
     const { openModal } = useContext(ModalContext)
@@ -27,7 +40,7 @@ function UpdateForm({ content, clearSelected, updateTable }) {
         if (Object.keys(changedFields).length > 0) {
             // console.log(changedFields)
             await axios.updateData(`/api/update_item`, {
-                itemId: content['Item ID'],
+                itemId: content['id'],
                 newValues: changedFields
             }, 'Update is successful!')
             updateTable()
@@ -47,15 +60,15 @@ function UpdateForm({ content, clearSelected, updateTable }) {
                     </svg>
                     <h1 className="font-semibold text-xl text-sky-400">Item Detail</h1>
                     <div className=" grid grid-cols-1 md:grid-cols-2 container md:gap-x-10 md:gap-y-2">
-                        {Object.keys(currentState).map((key, index) =>
+                        {Object.keys(map).map((key, index) =>
                             <div className="flex flex-col" key={index}>
                                 <FormLabel> {key} </FormLabel>
                                 <input
                                     type='text'
-                                    name={key}
-                                    value={key === 'Created Time' || key === 'Last Update Time' ?
-                                        format(new Date(currentState[key]), 'yyyy-MM-dd HH:mm:ss') :
-                                        currentState[key]}
+                                    name={map[key]}
+                                    value={key === 'Created at' || key === 'Updated at' ?
+                                        format(new Date(currentState[map[key]]), 'yyyy-MM-dd HH:mm:ss') :
+                                        currentState[map[key]]}
                                     onChange={handleChange}
                                     className={'border border-gray-300 p-0.5 rounded'}
                                 />

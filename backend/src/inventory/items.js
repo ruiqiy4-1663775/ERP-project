@@ -1,5 +1,3 @@
-import { connection } from '../data_access_layer/dbconfig.js'
-import { addWhereClause, addSetClause } from '../service/utils.js'
 import { Item } from '../data_access_layer/models.js'
 
 export async function createItem(item_name, item_description, collection) {
@@ -27,11 +25,7 @@ export async function findItem(filters) {
 }
 
 export async function updateItem(itemId, newValues) {
-    const Map = {'Item ID': 'item_id', 'Item Name': 'item_name', 'Collection': 
-        'collection', 'Item Type': 'item_type', 'Item Description': 'item_description',
-        'Unit': 'unit'}
-    let sql = 'UPDATE Items '
-    sql = addSetClause(sql, newValues, Map)
-    sql = sql + ` WHERE item_id = '${itemId}'`
-    await connection.execute(sql);
+    console.log('updateItem', newValues, 'itemId:', itemId)
+    let resposne = await Item.update(newValues, {where: {id : itemId}})
+    console.log('response: ', resposne)
 }
