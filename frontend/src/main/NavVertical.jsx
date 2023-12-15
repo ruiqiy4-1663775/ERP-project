@@ -1,7 +1,7 @@
 import { useNavigate, NavLink } from 'react-router-dom';
 import { useState } from 'react';
-import { LOCAL_STORAGE_KEY } from '../../utils/constants';
-import { API_ENDPOINT } from '../../utils/constants'
+import { LOCAL_STORAGE_KEY } from '../utils/constants';
+import { API_ENDPOINT } from '../utils/constants'
 
 function Nav({ user }) {
     const [open, setOpen] = useState(true)

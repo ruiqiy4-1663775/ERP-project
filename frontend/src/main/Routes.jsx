@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider, } from "react-router-dom";
-import Main from "./main/Main";
+import Main from "./Main";
 // import dashboard
 import DashboardMain from "./dashboard/Dashboard";
 import { salesRoutes } from "./sales/salesRoutes";
