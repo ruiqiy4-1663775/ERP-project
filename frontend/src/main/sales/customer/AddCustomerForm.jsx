@@ -1,11 +1,17 @@
-import useForm from '../../../../utils/useForm';
-import useAxios from '../../../../utils/useAxios';
+import useForm from '../../../utils/useForm';
+import useAxios from '../../../utils/useAxios';
 import Select from 'react-select';
 import { useState, useEffect } from 'react';
-import { customStyles } from '../../../../utils/constants';
+import { customStyles } from '../../../utils/constants';
 
 function AddCustomerForm() {
-    let fields = ['Customer ID', 'Customer Name', 'Phone Number', 'Email', 'Address', 'Price Tier']
+    const map = {
+        'Customer Name': 'customer_name',
+        'Phone Number': 'phoneNumber', 'Email Address': 'email', 'Price Tier': 'price_tier',
+        'Street Address': 'street_address', 'City': 'city', 'State': 'state', 'Zip Code': 'zipcode',
+        'Country': 'country'
+    }
+    let fields = Object.keys(map)
     let formHandler = useForm(fields)
     const {get, post} = useAxios()
     const [priceTierList, setPriceTierList] = useState()

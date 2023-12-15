@@ -1,5 +1,5 @@
 import 'dotenv/config'
-import { Item, Supplier } from "./models.js";
+import { Item, Supplier, Customer } from "./models.js";
 import sequelize from './sequelize.js';
 
 const addItems = async () => {
@@ -43,10 +43,28 @@ const addTestSuppliers = async () => {
  
 };
 
+const addTestCustomers = async () => {
+    for (let i = 1; i <= 10; i++) {
+        await Customer.create({
+            customer_name: `Test Customer ${i}`,
+            email: `testcustomer${i}@example.com`,
+            phoneNumber: `123456789${i}`,
+            street_address: `123 Test Street, Apt ${i}`,
+            city: `Test City`,
+            state: `Test State`,
+            zipcode: `1234${i}`,
+            country: `Test Country`
+        });
+    }
+
+    console.log('Test customers added successfully.');
+};
+
 async function insert() {
     try {
         await addItems()
         await addTestSuppliers()
+        await addTestCustomers()
         console.log('successfully insert test data')
         sequelize.close()
     } catch (err) {

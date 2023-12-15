@@ -98,3 +98,52 @@ Item.init({
     modelName: 'Item_new'
 });
 
+export class Customer extends Model {}
+
+Customer.init({
+    // Assuming an auto-generated ID field is used
+    customer_name: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            isEmail: true
+        }
+    },
+    phoneNumber: {
+        type: DataTypes.STRING,
+        allowNull: true, // or false, based on your requirements
+    },
+    street_address: {
+        type: DataTypes.TEXT,
+        allowNull: true // or false, based on your requirements
+    },
+    city: {
+        type: DataTypes.STRING,
+        allowNull: true // or false, based on your requirements
+    },
+    state: {
+        type: DataTypes.STRING,
+        allowNull: true // or false, based on your requirements
+    },
+    zipcode: {
+        type: DataTypes.STRING,
+        allowNull: true // or false, based on your requirements
+    },
+    country: {
+        type: DataTypes.STRING,
+        allowNull: true // or false, based on your requirements
+    },
+    price_tier: {
+        type: DataTypes.STRING,
+        defaultValue: ''
+    }
+}, {
+    sequelize,
+    modelName: 'Customernew',
+    // Additional model options go here
+});
+
