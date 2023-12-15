@@ -6,18 +6,19 @@ import Container from '../../../../components/Container';
 
 function UpdateForm({ content, clearSelected, updateTable }) {
     const keyMap = {
-        "Address line 1": "supplier_address_line1",
-        "Address line 2": "supplier_address_line2",
-        "City": "supplier_city",
+        "Supplier ID": 'id',
+        "Supplier Name": "supplier_name",
         "Contact Name": "contact_name",
         "Contact Phone": "contact_phone",
         "Contact Primary Email": "contact_primary_email",
         "Contact Secondary Email": "contact_secondary_email",
         "Contact Title": "contact_title",
+        "Address line 1": "supplier_address_line1",
+        "Address line 2": "supplier_address_line2",
+        "City": "supplier_city",
         "Country": "supplier_country",
         'Note': 'note',
         "State": "supplier_state",
-        "Supplier Name": "supplier_name",
         "Zip": "supplier_zipcode"
     };
     console.log(content)
@@ -85,7 +86,7 @@ function UpdateForm({ content, clearSelected, updateTable }) {
                                 <input
                                     type='text'
                                     name={key}
-                                    value={key === 'Created Time' || key === 'Last Update Time' ?
+                                    value={key === 'createdAt' || key === 'updatedAt' ?
                                         format(new Date(currentState[key]), 'yyyy-MM-dd HH:mm:ss') :
                                         currentState[key]}
                                     onChange={handleChange}

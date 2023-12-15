@@ -55,7 +55,6 @@ function FindOrderForm({ get }) {
         
             <div className="space-y-4 w-full">
             <div className="flex justify-between">
-                <h1 className="text-xl font-semibold">Find Order</h1>
                 {/* <svg onClick={close} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 text-red-300 hover:text-red-500">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg> */}
@@ -106,7 +105,7 @@ function FindOrderForm({ get }) {
                     </div>
                     <div>
                         <button onClick={handleSubmit} className="bg-blue-500 hover:bg-blue-700 text-white p-0.5 rounded mr-5 w-28">
-                            Filter Order
+                            Search
                         </button>
                         <button type="button" onClick={handleClear} className="bg-rose-500 hover:bg-rose-700 text-white p-0.5 rounded w-28">
                             Clear All

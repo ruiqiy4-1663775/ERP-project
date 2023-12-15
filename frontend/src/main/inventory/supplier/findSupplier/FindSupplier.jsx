@@ -1,12 +1,22 @@
 // This file is the handler of the findOrder
-import { useState } from 'react';
-import useAxios from '../../../../utils/useAxios';
+import { useState, useEffect} from 'react';
+import useAxios from '../../../../hooks/useAxios';
 import ResultTable from './Table';
 
 function FindSupplier() {
     let fields = ['Supplier ID', 'Supplier Name']
     const [formState, setFormState] = useState(initialState());
-    const { data, setData, get} = useAxios();
+    const [data, setData] = useState([])
+    const axios = useAxios()
+
+    useEffect(() => {
+        const get = async () => {
+            let response = await axios.get('/api/find_supplier', {});
+            setData(response)
+        }
+        get()
+        // eslint-disable-next-line
+    }, [])
 
     function initialState() {
         let initial = {}
@@ -23,12 +33,13 @@ function FindSupplier() {
         });
     };
 
-    const handleClear = () => {
+    const handleClear = async () => {
         setFormState(initialState());
-        setData(null)
+        let response = await axios.get('/api/find_supplier', {});
+        setData(response)
     };
 
-    function handleSubmit() {
+    async function handleSubmit() {
         let filteredData = {};
         for (let field of fields) {
             // only want non empty fields
@@ -36,11 +47,11 @@ function FindSupplier() {
                 filteredData[field] = formState[field]
             }
         }
-        get('/api/find_supplier', filteredData);
+        let response = await axios.get('/api/find_supplier', filteredData);
+        setData(response)
     }
     return (
         <div className="space-y-4 w-full">
-            <h1 className="text-xl font-semibold">Find Supplier</h1>
             <div className="space-y-5">
                 <div className="w-full grid grid-cols-1 md:grid-cols-3 container md:gap-x-5 md:gap-y-1">
                     {fields.map((field, index) =>
@@ -56,7 +67,7 @@ function FindSupplier() {
                     )}
                 </div>
                 <button onClick={handleSubmit} className="bg-blue-500 hover:bg-blue-700 text-white p-0.5 rounded mr-5 w-32">
-                    Find Supplier
+                    Search
                 </button>
                 <button type="button" onClick={handleClear} className="bg-rose-500 hover:bg-rose-700 text-white p-0.5 rounded w-32">
                     Clear All

@@ -17,7 +17,7 @@ const Items = () => {
                 <button onClick={() => setOpenCreate(!openCreate)} className='bg-blue-500 hover:bg-blue-700 text-white p-0.5 px-3 rounded mr-5'>
                     Add New Item
                 </button>
-                </div>
+            </div>
             {openCreate &&
                 <div onClick={() => setOpenCreate(false)} className="fixed pt-10 inset-0 z-20 bg-black/40 flex flex-col">
                     <div onClick={(e) => { e.stopPropagation() }} className="w-[85%] mx-auto">

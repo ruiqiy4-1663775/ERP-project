@@ -15,15 +15,15 @@ function SalesOrder() {
     let navigate = useNavigate()
     const { data, get } = useAxios()
     return (
-        <div className="relative">
-            <Container width={"w-[95%] mb-10"}>
+        <div className="h-full relative">
+            <div className="rounded-lg shadow-md bg-white mb-10 px-10 pt-5 pb-5">
                 <FormHeader>Orders</FormHeader>
-                <div className="border border-gray-400 my-2" />
+                <div className="border-t border-gray-400 my-2" />
 
                 <button onClick={() => setOpenCreate(!openCreate)} className='bg-blue-500 hover:bg-blue-700 text-white p-0.5 px-3 rounded mr-5'>
                     Create New Order
                 </button>
-            </Container>
+            </div>
             {orderId &&
                 <DetailForm orderId={orderId} close={() => navigate('/sales/sales_order')} />
             }
@@ -38,8 +38,6 @@ function SalesOrder() {
             }
             <Container width={"w-[95%] mb-10"}>
                 <FindOrderForm get={get}></FindOrderForm>
-            </Container>
-            <Container width={"w-[95%]"}>
                 <ResultTable data={data} get={get} />
             </Container>
         </div>
