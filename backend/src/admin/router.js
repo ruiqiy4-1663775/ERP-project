@@ -6,13 +6,13 @@ import mysql from 'mysql2'
 
 router.post('/audition', async (req, res, next) => {
     let s = `SELECT username AS Username, activity AS Activity, target AS Target, detail AS "Detail", activity_time
-        AS Time FROM Audition` 
+        AS Time FROM Audition`
     let sql = audit.addFilter(s, req.body);
     sql += ' ORDER BY Time DESC'
     try {
         let [result] = await connection.execute(sql)
         res.send(result)
-    } catch(err) {
+    } catch (err) {
         next(err)
     }
 })
@@ -21,10 +21,10 @@ router.post('/add_user', async (req, res, next) => {
     let parameters = req.body;
     let sql = "INSERT INTO Users(username, password, role, name, email) VALUES (?, ?, ?, ?, ?)";
     try {
-        await connection.execute(sql, [parameters.username, parameters.password, parameters.role, 
-            parameters.name, parameters.email])
+        await connection.execute(sql, [parameters.username, parameters.password, parameters.role,
+        parameters.name, parameters.email])
         res.sendStatus(200)
-    } catch(err) {
+    } catch (err) {
         next(err)
     }
 })
@@ -35,7 +35,7 @@ router.post('/find_user', async (req, res, next) => {
     try {
         let [result] = await connection.execute(sql)
         res.send(result)
-    } catch(err) {
+    } catch (err) {
         next(err)
     }
 })
@@ -45,7 +45,7 @@ router.post('/delete_user', async (req, res, next) => {
     try {
         await connection.execute(sql)
         res.sendStatus(200)
-    } catch(err) {
+    } catch (err) {
         next(err)
     }
 })

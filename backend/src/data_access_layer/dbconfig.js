@@ -11,26 +11,6 @@ const option = {
 }
 export const connection = mysqlv2.createPool(option);
 
-
-
-// async function execute(sql, array) {
-//     let conn = await mysqlv2.createConnection(option)
-//     // console.log('I am working')
-//     try {
-//         if (array) {
-//             sql = mysql.format(sql, array)
-//         }
-//         let result = await conn.execute(sql)
-//         return result
-//     } catch (err) {
-//         throw err
-//     } finally {
-//         conn.end()
-//     }
-// }
-
-// export const connection = {execute}
-
 // Set up error handler
 connection.on('connection', (conn) => {
     console.log('New connection established');
